@@ -168,7 +168,7 @@
     state: present
   when: check_mk_agent_add_to_wato
   register: check_mk_agent_add_host_wato
-  delegate_to: localhost
+  delegate_to: "{{ check_mk_agent_monitoring_host }}"
   tags:
     - skip_ansible_lint
 
@@ -182,6 +182,6 @@
   when: check_mk_agent_add_host_wato.changed
   notify:
     - Check_mk activate changes via WATO API
-  delegate_to: localhost
+  delegate_to: "{{ check_mk_agent_monitoring_host }}"
   tags:
     - skip_ansible_lint
